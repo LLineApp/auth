@@ -1,0 +1,34 @@
+import graphene
+<<<<<<< HEAD
+
+=======
+>>>>>>> 57d88d572c10eca0e8f4b351e5abf99809ffb572
+import links.schema
+import users.schema
+
+
+<<<<<<< HEAD
+class Query(links.schema.Query, graphene.ObjectType):
+    pass
+
+
+class Mutation(users.schema.Mutation, links.schema.Mutation, graphene.ObjectType,):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
+=======
+class Query(users.schema.Query,
+            links.schema.Query,
+            graphene.ObjectType,):
+        pass
+
+
+class Mutation(users.schema.Mutation,
+               links.schema.Mutation,
+               graphene.ObjectType,):
+    pass
+
+
+schema = graphene.Schema(query=Query, mutation=Mutation)
+>>>>>>> 57d88d572c10eca0e8f4b351e5abf99809ffb572
