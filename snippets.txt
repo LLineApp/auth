@@ -1,0 +1,31 @@
+query{
+    users {
+        id
+        username
+        email
+    }
+}
+
+mutation {
+  tokenAuth(username: "renato", password: "123123") {
+    token
+  }
+}
+
+mutation {
+  verifyToken(token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InJlbmF0byIsImV4cCI6MTYwNTE0OTc2Mywib3JpZ19pYXQiOjE2MDUxNDk0NjN9.ipYrXj6YBHwqFZ3KCI3jEFcW6ssZD6ocYBOuj60vDZA") {
+    payload
+  }
+}
+
+
+No HEADER
+Authorization:JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6InJlbmF0byIsImV4cCI6MTYwNTE0OTc2Mywib3JpZ19pYXQiOjE2MDUxNDk0NjN9.ipYrXj6YBHwqFZ3KCI3jEFcW6ssZD6ocYBOuj60vDZA
+
+No BODY:
+{
+  me {
+    id
+    username
+  }
+}
