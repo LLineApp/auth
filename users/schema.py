@@ -32,7 +32,7 @@ class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
 
 
-class Query(graphene.ObjectType):
+class Query(graphene.AbstractType):
     me = graphene.Field(UserType)
     users = graphene.List(UserType)
 
@@ -44,3 +44,4 @@ class Query(graphene.ObjectType):
         if user.is_anonymous:
             raise Exception('Not logged!')
         return user
+        
