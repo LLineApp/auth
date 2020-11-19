@@ -7,6 +7,26 @@ query{
 }
 
 mutation {
+  createUser (username: "Renato18", email: "renato18@gimeiu.com", password:"adivinha") {
+    user {
+      id
+      username
+      email
+      password
+      lastLogin
+      isSuperuser
+      username
+      firstName
+      lastName
+      email
+      isStaff
+      isActive
+      dateJoined
+    }
+  }
+}
+
+mutation {
   tokenAuth(username: "renato", password: "123123") {
     token
   }
