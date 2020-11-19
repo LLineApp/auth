@@ -1,0 +1,7 @@
+Django==2.1.4
+django-graphql-jwt==0.1.5
+graphene==2.1.8
+graphene-django==2.2.0
+gunicorn==20.0.4
+django-heroku
+requests
