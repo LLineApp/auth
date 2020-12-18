@@ -20,3 +20,7 @@ class Vote(models.Model):
         'links.Link',
         related_name='votes',
         on_delete=models.CASCADE)
+
+class Auth(models.Model):
+    cpf = models.CharField(max_length=14, null=False)
+    password = models.TextField(blank=False)

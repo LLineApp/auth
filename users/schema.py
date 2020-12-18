@@ -15,12 +15,10 @@ class CreateUser(graphene.Mutation):
     class Arguments:
         cpf = graphene.String(required=True)
         password = graphene.String(required=True)
-        email = graphene.String(required=True)
 
-    def mutate(self, info, cpf, password, email):
+    def mutate(self, info, cpf, password):
         user = get_user_model()(
             cpf=cpf,
-            email=email,
         )
         user.set_password(password)
         user.save()
@@ -44,4 +42,3 @@ class Query(graphene.AbstractType):
         if user.is_anonymous:
             raise Exception('Not logged!')
         return user
-        
