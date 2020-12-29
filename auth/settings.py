@@ -25,12 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yo)(mtip_$xtx-!%h)%7rpcaaef0g6r$a89w^pc&tp=ushbs2-'
+SECRET_KEY = os.getenv('SECRET_KEY', 'I am in development mode, bro')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', True)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', ['*'])
 
 # Application definition
 
@@ -143,11 +143,11 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-CORS_ORIGIN_ALLOW_ALL = True # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL', True) # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST = [
+CORS_ORIGIN_WHITELIST =  os.getenv('CORS_ORIGIN_WHITELIST', [
     'http://localhost:3030',
-] # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+]) # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:3030',
 ]
