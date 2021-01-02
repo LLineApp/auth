@@ -27,12 +27,3 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = _('user')
         verbose_name_plural = _('users')
-
-#from django.conf import settings
-#from django.db import models
-
-#class User(models.Model):
-#    cpf = models.CharField(max_length=400)
-#    password = models.TextField(blank=False)
-
-

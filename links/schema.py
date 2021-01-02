@@ -6,35 +6,8 @@ from graphql import GraphQLError
 
 from users.schema import UserType
 
-from .models import Link, Vote, Auth
+from .models import Link, Vote
 
-
-class AuthType(DjangoObjectType):
-    class Meta:
-        model = Auth
-
-
-class CreateAuth(graphene.Mutation):
-    cpf = graphene.String()
-    password = graphene.String()
-
-    class Arguments:
-        cpf = graphene.String()
-        password = graphene.String()
-
-    def mutate(self, info, cpf, password):
-        auth = Auth(
-            cpf=cpf,
-            password=password,
-        )
-        auth.save()
-
-        return CreateAuth(
-            cpf=auth.cpf,
-            password=auth.password,
-        )
-
-############################################################
 
 class LinkType(DjangoObjectType):
     class Meta:
@@ -54,7 +27,6 @@ class Query(graphene.ObjectType):
         skip=graphene.Int(),
     )
     votes = graphene.List(VoteType)
-    auths = graphene.List(AuthType)
 
     def resolve_links(self, info, search=None, first=None, skip=None, **kwargs):
         qs = Link.objects.all()
@@ -132,4 +104,3 @@ class CreateVote(graphene.Mutation):
 class Mutation(graphene.ObjectType):
     create_link = CreateLink.Field()
     create_vote = CreateVote.Field()
-    create_auth = CreateAuth.Field()
