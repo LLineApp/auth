@@ -19,7 +19,7 @@ class Mutation(
     links.schema.Mutation, 
     links.schema_relay.RelayMutation,
     graphene.ObjectType):
-    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
+    token_auth = users.schema.userToken()
     verify_token = graphql_jwt.Verify.Field()
     refresh_token = graphql_jwt.Refresh.Field()
     

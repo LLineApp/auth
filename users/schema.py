@@ -3,6 +3,10 @@ from django.contrib.auth import get_user_model
 import graphene
 from graphene_django import DjangoObjectType
 
+import datetime
+import hashlib
+from django.conf import settings
+
 
 class UserType(DjangoObjectType):
     class Meta:
@@ -44,4 +48,10 @@ class Query(graphene.AbstractType):
         if user.is_anonymous:
             raise Exception('Not logged!')
         return user
-        
+
+
+def userToken():
+    user = get_user_model()
+    today = datetime.date.today()
+    key = settings.SECRET_KEY  + str(user.email) + str(today)
+    return hashlib.md5(key.encode()).digest
