@@ -7,7 +7,7 @@ from django.contrib.auth.base_user import AbstractBaseUser
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from .managers import UserManager
-from ..auth.functions.math_cpf import isCpfValid
+from auth.functions.math_cpf import isCpfValid
 
 def validate_cpf(value):
     if not isCpfValid(value):
