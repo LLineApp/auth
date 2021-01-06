@@ -28,9 +28,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.getenv('SECRET_KEY', 'I am in development mode, bro')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', True)
+DEBUG = os.getenv('DEBUG', 'TRUE') == 'TRUE'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', ['*'])
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
 
 # Application definition
 
@@ -52,7 +52,7 @@ AUTH_USER_MODEL = 'users.CustomUser'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'corsheaders.middleware.CorsMiddleware',  
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -145,11 +145,12 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 
-CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL', True) # If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+# If this is used then `CORS_ORIGIN_WHITELIST` will not have any effect
+CORS_ORIGIN_ALLOW_ALL = os.getenv('CORS_ORIGIN_ALLOW_ALL', 'TRUE') == 'TRUE'
 CORS_ALLOW_CREDENTIALS = True
-CORS_ORIGIN_WHITELIST =  os.getenv('CORS_ORIGIN_WHITELIST', [
-    'http://localhost:3030',
-]) # If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+# If this is used, then not need to use `CORS_ORIGIN_ALLOW_ALL = True`
+CORS_ORIGIN_WHITELIST = os.getenv(
+    'CORS_ORIGIN_WHITELIST', 'http://localhost:3030').split(',')
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:3030',
 ]
