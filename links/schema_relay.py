@@ -17,6 +17,8 @@ class LinkNode(DjangoObjectType):
         model = Link
 
         interfaces = (graphene.relay.Node, )
+
+
 class VoteNode(DjangoObjectType):
     class Meta:
         model = Vote
@@ -26,7 +28,8 @@ class VoteNode(DjangoObjectType):
 class RelayQuery(graphene.ObjectType):
     relay_link = graphene.relay.Node.Field(LinkNode)
 
-    relay_links = DjangoFilterConnectionField(LinkNode, filterset_class=LinkFilter)
+    relay_links = DjangoFilterConnectionField(
+        LinkNode, filterset_class=LinkFilter)
 
 class RelayCreateLink(graphene.relay.ClientIDMutation):
     link = graphene.Field(LinkNode)
@@ -49,4 +52,4 @@ class RelayCreateLink(graphene.relay.ClientIDMutation):
 
 
 class RelayMutation(graphene.AbstractType):
-    relay_create_link = RelayCreateLink.Field()    
+    relay_create_link = RelayCreateLink.Field()
