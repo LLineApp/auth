@@ -1,5 +1,5 @@
 import graphene
-import graphql_jwt
+import graphql_jwt_hack
 
 import links.schema
 import users.schema
@@ -19,9 +19,9 @@ class Mutation(
     links.schema.Mutation, 
     links.schema_relay.RelayMutation,
     graphene.ObjectType):
-    token_auth = graphql_jwt.ObtainJSONWebToken.Field()
-    verify_token = graphql_jwt.Verify.Field()
-    refresh_token = graphql_jwt.Refresh.Field()
+    token_auth = graphql_jwt_hack.ObtainJSONWebToken.Field()
+    verify_token = graphql_jwt_hack.Verify.Field()
+    refresh_token = graphql_jwt_hack.Refresh.Field()
     
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
