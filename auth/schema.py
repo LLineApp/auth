@@ -1,5 +1,5 @@
 import graphene
-import graphql_jwt
+import graphql_jwt_hack
 
 import links.schema
 import users.schema
@@ -22,6 +22,6 @@ class Mutation(
     token_auth = users.schema.userToken()
     verify_token = graphql_jwt.Verify.Field()
     refresh_token = graphql_jwt.Refresh.Field()
-    
+  
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
